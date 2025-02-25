@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: io.azure.monitoring.javaruntime.micronaut
+testFramework: junit
+sourceLanguage: java
+buildTool: maven
+features: [app-name, data, data-jpa, http-client-test, java, java-application, jdbc-hikari, junit, logback, maven, maven-enforcer-plugin, micronaut-aot, micronaut-http-validation, micronaut-test-rest-assured, netty-server, postgres, properties, readme, serialization-jackson, shade, static-resources, testcontainers]
