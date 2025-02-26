@@ -29,6 +29,7 @@ curl 'localhost:8701/quarkus'
 curl 'localhost:8701/quarkus/load'
 curl 'localhost:8701/quarkus/load?cpu=10'
 curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true'
+curl 'localhost:8701/quarkus/stats' | jq
 ```
 
 ### Micronaut
@@ -37,6 +38,13 @@ curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true'
 mvn test                          # Execute the tests
 
 docker compose -f deployment/local/postgres.yaml up
+mvn mn:run                        # Execute the application
+
+curl 'localhost:8702/micronaut'
+curl 'localhost:8702/micronaut/load'
+curl 'localhost:8702/micronaut/load?cpu=10'
+curl 'localhost:8702/micronaut/load?cpu=10&memory=20&db=true&llm=true'
+curl 'localhost:8702/micronaut/stats' | jq
 
 ```
 
@@ -52,6 +60,7 @@ curl 'localhost:8703/springboot'
 curl 'localhost:8703/springboot/load'
 curl 'localhost:8703/springboot/load?cpu=10'
 curl 'localhost:8703/springboot/load?cpu=10&memory=20&db=true&llm=true'
+curl 'localhost:8703/springboot/stats' | jq
 ```
 
 

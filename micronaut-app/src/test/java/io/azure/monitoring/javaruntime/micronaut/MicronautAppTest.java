@@ -22,7 +22,7 @@ class MicronautAppTest {
 
     @BeforeEach
     public void setUp() {
-        postgreSQLContainer = new PostgreSQLContainer("postgres:14")
+        postgreSQLContainer = new PostgreSQLContainer("postgres:17")
             .withDatabaseName("postgres")
             .withUsername("postgres")
             .withPassword("password");

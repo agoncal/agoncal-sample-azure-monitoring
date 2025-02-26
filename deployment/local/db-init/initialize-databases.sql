@@ -1,7 +1,9 @@
 drop table if exists TABLE_STATISTICS cascade;
 drop sequence if exists TABLE_STATISTICS_SEQ;
+drop sequence if exists hibernate_sequence;
 
 create sequence TABLE_STATISTICS_SEQ start 1 increment 50;
+create sequence hibernate_sequence start 1 increment 50;
 
 create table TABLE_STATISTICS
 (
