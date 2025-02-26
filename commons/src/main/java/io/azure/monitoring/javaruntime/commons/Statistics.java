@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 @Entity
-@Table(name = "Statistics_Quarkus")
+@Table(name = "TABLE_STATISTICS")
 public class Statistics {
 
     @GeneratedValue
@@ -24,6 +24,7 @@ public class Statistics {
     @Column(name = "BITES_FOR_MEMORY")
     public Integer bitesForMemory;
     public Duration duration;
+    @Column(columnDefinition = "TEXT")
     public String description;
 
     public Long getId() {

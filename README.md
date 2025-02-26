@@ -1,41 +1,49 @@
-## Micronaut 4.7.6 Documentation
+# Monitoring Java Applications on Azure
 
-- [User Guide](https://docs.micronaut.io/4.7.6/guide/index.html)
-- [API Reference](https://docs.micronaut.io/4.7.6/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/4.7.6/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+# Telemetry for GraalVM native images
 
-- [Micronaut Maven Plugin documentation](https://micronaut-projects.github.io/micronaut-maven-plugin/latest/)
-## Feature maven-enforcer-plugin documentation
+This repository contains code demonstrating how to enable Monitor Java applications for JVM and GraalVM native images on:
 
-- [https://maven.apache.org/enforcer/maven-enforcer-plugin/](https://maven.apache.org/enforcer/maven-enforcer-plugin/)
+* Azure AppServices
+* Azure Container Apps
+* Azure Functions
+
+It uses several Java frameworks:
+* Spring Boot
+* Quarkus
+* Micronaut
+
+## Run the Code
+
+Since native apps are built for the machine it runs on, make sure you execute this on a unix machine.
+## Local
+
+### Quarkus
+
+```shell
+mvn test                          # Execute the tests
+mvn quarkus:dev                   # Execute the application
+curl 'localhost:8701/quarkus'
+curl 'localhost:8701/quarkus/load'
+curl 'localhost:8701/quarkus/load?cpu=10'
+curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true'
+```
+
+### Micronaut
+
+```shell
+docker compose -f deployment/local/postgres.yaml up
+mvn test                          # Execute the tests
+```
+
+### Spring Boot
+
+```shell
+docker compose -f deployment/local/postgres.yaml up
+mvn test                          # Execute the tests
+```
 
 
-## Feature serialization-jackson documentation
 
-- [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
-
-
-## Feature testcontainers documentation
-
-- [https://www.testcontainers.org/](https://www.testcontainers.org/)
-
-
-## Feature micronaut-test-rest-assured documentation
-
-- [Micronaut Micronaut-Test REST-assured documentation](https://micronaut-projects.github.io/micronaut-test/latest/guide/#restAssured)
-
-- [https://rest-assured.io/#docs](https://rest-assured.io/#docs)
-
-
-## Feature jdbc-hikari documentation
-
-- [Micronaut Hikari JDBC Connection Pool documentation](https://micronaut-projects.github.io/micronaut-sql/latest/guide/index.html#jdbc)
-
-
-## Feature micronaut-aot documentation
-
-- [Micronaut AOT documentation](https://micronaut-projects.github.io/micronaut-aot/latest/guide/)
 
 
