@@ -8,7 +8,7 @@ create table TABLE_STATISTICS
   id                bigint not null,
   BITES_FOR_MEMORY  integer,
   duration          numeric(21, 0),
-  javaRuntime       smallint check (javaRuntime between 0 and 4),
+  JAVA_RUNTIME      varchar(255),
   DONE_AT           timestamp(6) with time zone,
   ITERATION_FOR_CPU bigint,
   description       TEXT,

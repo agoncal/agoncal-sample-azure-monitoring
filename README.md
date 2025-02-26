@@ -22,7 +22,9 @@ Since native apps are built for the machine it runs on, make sure you execute th
 
 ```shell
 mvn test                          # Execute the tests
+
 mvn quarkus:dev                   # Execute the application
+
 curl 'localhost:8701/quarkus'
 curl 'localhost:8701/quarkus/load'
 curl 'localhost:8701/quarkus/load?cpu=10'
@@ -32,15 +34,24 @@ curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true'
 ### Micronaut
 
 ```shell
-docker compose -f deployment/local/postgres.yaml up
 mvn test                          # Execute the tests
+
+docker compose -f deployment/local/postgres.yaml up
+
 ```
 
 ### Spring Boot
 
 ```shell
-docker compose -f deployment/local/postgres.yaml up
 mvn test                          # Execute the tests
+
+docker compose -f deployment/local/postgres.yaml up
+mvn spring-boot:run               # Execute the application
+
+curl 'localhost:8703/springboot'
+curl 'localhost:8703/springboot/load'
+curl 'localhost:8703/springboot/load?cpu=10'
+curl 'localhost:8703/springboot/load?cpu=10&memory=20&db=true&llm=true'
 ```
 
 
