@@ -33,71 +33,49 @@ class SpringbootResourceTest {
     }
 
     @Test
-    public void testCpuEndpoint() {
+    public void testLoadEndpointWithDefault() {
         ResponseEntity<String> response = this.restTemplate.
-            getForEntity(basePath + "/cpu?iterations=1", String.class);
+            getForEntity(basePath + "/load", String.class);
 
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         assertThat(response.getBody())
-            .startsWith("Spring Boot: CPU consumption is done with")
+            .startsWith("Spring Boot: load: 1 Cpu Iterations - 1 Memory Bites - DB false - LLM false")
             .endsWith("nano-seconds.");
     }
 
     @Test
-    public void testCpuWithDBEndpoint() {
+    public void testLoadEndpointOverrideCPUandMemory() {
         ResponseEntity<String> response = this.restTemplate.
-            getForEntity(basePath + "/cpu?iterations=1&db=true", String.class);
+            getForEntity(basePath + "/load?cpu=10&memory=20", String.class);
 
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         assertThat(response.getBody())
-            .startsWith("Spring Boot: CPU consumption is done with")
-            .endsWith("The result is persisted in the database.");
-    }
-
-    @Test
-    public void testCpuWithDBAndDescEndpoint() {
-        ResponseEntity<String> response = this.restTemplate.
-            getForEntity(basePath + "/cpu?iterations=1&db=true&dec=Java17", String.class);
-
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
-        assertThat(response.getBody())
-            .startsWith("Spring Boot: CPU consumption is done with")
-            .doesNotContain("Java17")
-            .endsWith("The result is persisted in the database.");
-    }
-
-    @Test
-    public void testMemoryEndpoint() {
-        ResponseEntity<String> response = this.restTemplate.
-            getForEntity(basePath + "/memory?bites=1", String.class);
-
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
-        assertThat(response.getBody())
-            .startsWith("Spring Boot: Memory consumption is done with")
+            .startsWith("Spring Boot: load: 10 Cpu Iterations - 20 Memory Bites - DB false - LLM false")
             .endsWith("nano-seconds.");
     }
 
     @Test
-    public void testMemoryWithDBEndpoint() {
+    public void testLoadEndpointWithDB() {
         ResponseEntity<String> response = this.restTemplate.
-            getForEntity(basePath + "/memory?bites=1&db=true", String.class);
+            getForEntity(basePath + "/load?db=true", String.class);
 
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         assertThat(response.getBody())
-            .startsWith("Spring Boot: Memory consumption is done with")
-            .endsWith("The result is persisted in the database.");
+            .startsWith("Spring Boot: load: 1 Cpu Iterations - 1 Memory Bites - DB true - LLM false")
+            .contains("The result is persisted in the database.")
+            .endsWith("nano-seconds.");
     }
 
     @Test
-    public void testMemoryWithDBAndDescEndpoint() {
+    public void testLoadEndpointWithLLM() {
         ResponseEntity<String> response = this.restTemplate.
-            getForEntity(basePath + "/memory?bites=1&db=true&desc=Java17", String.class);
+            getForEntity(basePath + "/load?llm=true", String.class);
 
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         assertThat(response.getBody())
-            .startsWith("Spring Boot: Memory consumption is done with")
-            .doesNotContain("Java17")
-            .endsWith("The result is persisted in the database.");
+            .startsWith("Spring Boot: load: 1 Cpu Iterations - 1 Memory Bites - DB false - LLM true")
+            .contains("The prompt has been received from the LLM")
+            .endsWith("nano-seconds.");
     }
 
     @Test

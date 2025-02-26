@@ -58,7 +58,7 @@ public class SpringbootResource {
                       @RequestParam(value = "db", defaultValue = "false") Boolean db,
                       @RequestParam(value = "llm", defaultValue = "false") Boolean llm,
                       @RequestParam(value = "desc", defaultValue = "JVM") String desc) {
-        String msg = "Quarkus: load: %d Cpu Iterations - %d Memory Bites - DB %b - LLM %b - %s.".formatted(iterationForCpu, bitesForMemory, db, llm, desc);
+        String msg = "Spring Boot: load: %d Cpu Iterations - %d Memory Bites - DB %b - LLM %b - %s.".formatted(iterationForCpu, bitesForMemory, db, llm, desc);
         LOGGER.log(INFO, msg);
         Instant start = Instant.now();
 
