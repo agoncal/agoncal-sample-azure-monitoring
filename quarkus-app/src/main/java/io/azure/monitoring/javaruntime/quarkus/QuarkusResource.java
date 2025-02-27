@@ -1,6 +1,5 @@
 package io.azure.monitoring.javaruntime.quarkus;
 
-import io.azure.monitoring.javaruntime.commons.AIUtil;
 import static io.azure.monitoring.javaruntime.commons.JavaRuntime.QUARKUS;
 import io.azure.monitoring.javaruntime.commons.LoadUtil;
 import io.azure.monitoring.javaruntime.commons.Statistics;
@@ -24,9 +23,11 @@ public class QuarkusResource {
     private static final Logger LOGGER = System.getLogger(QuarkusResource.class.getName());
 
     private final StatisticsRepository repository;
+    private final ChatBot chatBot;
 
-    public QuarkusResource(StatisticsRepository statisticsRepository) {
+    public QuarkusResource(StatisticsRepository statisticsRepository, ChatBot chatBot) {
         this.repository = statisticsRepository;
+        this.chatBot = chatBot;
     }
 
     /**
@@ -70,7 +71,7 @@ public class QuarkusResource {
 
         // Invoke LLM
         if (llm) {
-            String answer = AIUtil.askForMonitoringHelp(iterationForCpu, bitesForMemory, start);
+            String answer = chatBot.askForMonitoringHelp(iterationForCpu, bitesForMemory, Duration.between(start, Instant.now()).getNano());
             msg += " The prompt has been received from the LLM:" + answer;
         }
 

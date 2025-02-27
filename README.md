@@ -32,6 +32,39 @@ curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true'
 curl 'localhost:8701/quarkus/stats' | jq
 ```
 
+To build a Fat-Jar version of the application to use with a local database:
+
+```shell
+mvn clean package -Dquarkus.package.type=uber-jar
+docker compose -f deployment/local/postgres.yaml up
+java -jar target/quarkus-app-1.0.0-SNAPSHOT-runner.jar
+```
+
+To use a remote database deployed on Azure just override the JDBC URL.
+Make sure you export the `QUARKUS_LANGCHAIN4J_OPENAI_API_KEY` environment variable to your OpenAI API key
+
+```shell
+mvn clean package -Dquarkus.package.type=uber-jar
+java -Dquarkus.datasource.jdbc.url="$POSTGRES_CONNECTION_STRING" -jar target/quarkus-app-1.0.0-SNAPSHOT-runner.jar
+```
+
+To build a native application (you need GraalVM installed and `GRAALVM_HOME` set):
+
+```shell
+mvn -Pnative clean package -Dmaven.test.skip=true
+
+./target/quarkus-app-1.0.0-SNAPSHOT-runner -Dquarkus.datasource.jdbc.url="$POSTGRES_CONNECTION_STRING"
+
+curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true&desc=GraalVM'
+```
+
+To build a Docker image with the native application (you need to build the native image on Linux):
+```shell
+docker build -t quarkus-app-native -f src/main/docker/Dockerfile.native .
+```
+
+
+
 ### Micronaut
 
 ```shell

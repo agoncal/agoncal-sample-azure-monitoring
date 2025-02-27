@@ -38,14 +38,14 @@
 
   <dependencies>
     <!-- LangChain4j -->
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-azure-open-ai</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>dev.langchain4j</groupId>-->
+<!--      <artifactId>langchain4j</artifactId>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>dev.langchain4j</groupId>-->
+<!--      <artifactId>langchain4j-azure-open-ai</artifactId>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>jakarta.persistence</groupId>
       <artifactId>jakarta.persistence-api</artifactId>

@@ -1,10 +1,8 @@
 package io.azure.monitoring.javaruntime.commons;
 
-import dev.langchain4j.model.azure.AzureOpenAiChatModel;
 import static java.lang.System.Logger.Level.DEBUG;
 
 import java.lang.System.Logger;
-import java.time.Duration;
 import java.time.Instant;
 
 public class AIUtil {
@@ -25,21 +23,23 @@ public class AIUtil {
     public static String askForMonitoringHelp(Long iterationForCpu, Integer bitesForMemory, Instant start) {
         LOGGER.log(DEBUG, "ask for Monitoring Help");
 
-        AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
-            .apiKey(AZURE_OPENAI_KEY)
-            .endpoint(AZURE_OPENAI_ENDPOINT)
-            .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
-            .temperature(0.3)
-            .logRequestsAndResponses(true)
-            .build();
+//        AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
+//            .apiKey(AZURE_OPENAI_KEY)
+//            .endpoint(AZURE_OPENAI_ENDPOINT)
+//            .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
+//            .temperature(0.3)
+//            .logRequestsAndResponses(true)
+//            .build();
+//
+//        String prompt = PROMPT.formatted(iterationForCpu, bitesForMemory, Duration.between(start, Instant.now()).getNano());
+//        LOGGER.log(DEBUG, prompt);
+//
+//        String completion = model.chat(prompt);
+//        LOGGER.log(DEBUG, completion);
+//
+//        return completion;
 
-        String prompt = PROMPT.formatted(iterationForCpu, bitesForMemory, Duration.between(start, Instant.now()).getNano());
-        LOGGER.log(DEBUG, prompt);
-
-        String completion = model.chat(prompt);
-        LOGGER.log(DEBUG, completion);
-
-        return completion;
+        return "Fake AI";
     }
 
 }
