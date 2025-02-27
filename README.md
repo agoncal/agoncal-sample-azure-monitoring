@@ -9,6 +9,7 @@ This repository contains code demonstrating how to enable Monitor Java applicati
 * Azure Functions
 
 It uses several Java frameworks:
+
 * Spring Boot
 * Quarkus
 * Micronaut
@@ -16,6 +17,7 @@ It uses several Java frameworks:
 ## Run the Code
 
 Since native apps are built for the machine it runs on, make sure you execute this on a unix machine.
+
 ## Local
 
 ### Quarkus
@@ -35,17 +37,39 @@ curl 'localhost:8701/quarkus/stats' | jq
 To build a Fat-Jar version of the application to use with a local database:
 
 ```shell
-mvn clean package -Dquarkus.package.type=uber-jar
+mvn clean package -Dquarkus.package.jar.type=uber-jar -Dmaven.test.skip=true
 docker compose -f deployment/local/postgres.yaml up
 java -jar target/quarkus-app-1.0.0-SNAPSHOT-runner.jar
 ```
 
 To use a remote database deployed on Azure just override the JDBC URL.
-Make sure you export the `QUARKUS_LANGCHAIN4J_OPENAI_API_KEY` environment variable to your OpenAI API key
+Make sure you export the `QUARKUS_LANGCHAIN4J_OPENAI_API_KEY` environment variable to your OpenAI API key.
+Port 80 is used by default:
 
 ```shell
-mvn clean package -Dquarkus.package.type=uber-jar
+mvn clean package -Dquarkus.package.jar.type=uber-jar -Dmaven.test.skip=true
 java -Dquarkus.datasource.jdbc.url="$POSTGRES_CONNECTION_STRING" -jar target/quarkus-app-1.0.0-SNAPSHOT-runner.jar
+
+curl 'localhost:80/quarkus'
+curl 'localhost:80/quarkus/load'
+curl 'localhost:80/quarkus/load?cpu=10'
+curl 'localhost:80/quarkus/load?cpu=10&memory=20&db=true&llm=true'
+curl 'localhost:80/quarkus/stats' | jq
+```
+
+When the application is deployed to Azure AppServices, the following properties have to be overriden:
+
+* `QUARKUS_HTTP_PORT`
+* `QUARKUS_LANGCHAIN4J_OPENAI_API_KEY`
+* `QUARKUS_DATASOURCE_JDBC_URL`
+
+```shell
+curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus'
+curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load'
+curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load?cpu=10'
+curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load?cpu=10&memory=20&db=true&llm=true'
+curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/stats' | jq
+
 ```
 
 To build a native application (you need GraalVM installed and `GRAALVM_HOME` set):
@@ -59,11 +83,10 @@ curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true&desc=GraalVM
 ```
 
 To build a Docker image with the native application (you need to build the native image on Linux):
+
 ```shell
 docker build -t quarkus-app-native -f src/main/docker/Dockerfile.native .
 ```
-
-
 
 ### Micronaut
 
