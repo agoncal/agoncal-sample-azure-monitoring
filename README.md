@@ -72,7 +72,7 @@ curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/stats' | jq
 
 ```
 
-To build a native application (you need GraalVM installed and `GRAALVM_HOME` set):
+To build a native application (you need GraalVM installed and `GRAALVM_HOME` set) for you local machine:
 
 ```shell
 mvn -Pnative clean package -Dmaven.test.skip=true
