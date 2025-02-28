@@ -82,6 +82,18 @@ mvn -Pnative clean package -Dmaven.test.skip=true
 curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true&desc=GraalVM'
 ```
 
+To build a native application for a Linux machine:
+
+```shell
+mvn install -Dnative -Dquarkus.native.container-build=true -Dmaven.test.skip=true
+
+curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus'
+curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load'
+curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load?cpu=10'
+curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load?cpu=10&memory=20&db=true&llm=true'
+curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/stats' | jq
+```
+
 To build a Docker image with the native application (you need to build the native image on Linux):
 
 ```shell
