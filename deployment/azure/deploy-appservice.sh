@@ -84,7 +84,12 @@ az webapp create \
   --tags system="$TAG" \
   --name "$QUARKUS_NATIVE_APP" \
   --plan "$APP_SERVICE_PLAN" \
+  --runtime "JAVA:21-java21" \
   --public-network-access "Enabled"
+
+CREDS=($(az webapp deployment list-publishing-profiles --name "$QUARKUS_NATIVE_APP" --resource-group "$RESOURCE_GROUP"  --query "[?contains(publishMethod, 'FTP')].[publishUrl,userName,userPWD]" --output tsv))
+
+curl -T /Users/agoncal/Documents/Code/AGoncal/agoncal-sample-azure-monitoring/quarkus-app/target/quarkus-app-1.0.0-SNAPSHOT-runner -u ${CREDS[2]}:${CREDS[3]} ${CREDS[1]}/
 
 
 echo "Setting the configuration of the Native webapp..."
@@ -101,5 +106,20 @@ echo "----------------------"
 az webapp deploy \
   --resource-group "$RESOURCE_GROUP" \
   --name "$QUARKUS_NATIVE_APP" \
+  --type static \
+  --src-path /Users/agoncal/Documents/Code/AGoncal/agoncal-sample-azure-monitoring/quarkus-app/target/quarkus-app-1.0.0-SNAPSHOT-runner
+
+echo "Deploying the Startup script..."
+echo "----------------------"
+az webapp deploy \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$QUARKUS_NATIVE_APP" \
   --type startup \
-  --src-path /Users/agoncal/Documents/Code/AGoncal/agoncal-sample-azure-monitoring/quarkus-app/target/quarkus-app-1.0.0-SNAPSHOT-runner.jar
+  --src-path /Users/agoncal/Documents/Code/AGoncal/agoncal-sample-azure-monitoring/deployment/azure/startup.sh
+
+echo "Deleting the JAR webapp..."
+echo "----------------------"
+az webapp delete \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$QUARKUS_NATIVE_APP" \
+  --keep-empty-plan

@@ -85,7 +85,7 @@ curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true&desc=GraalVM
 To build a native application for a Linux machine:
 
 ```shell
-mvn install -Dnative -Dquarkus.native.container-build=true -Dmaven.test.skip=true
+mvn clean install -Dnative -Dquarkus.native.container-build=true -Dmaven.test.skip=true
 
 curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus'
 curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load'
