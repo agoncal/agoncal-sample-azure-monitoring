@@ -15,7 +15,7 @@ az appservice plan create \
   --is-linux
 
 ##############################################################################
-# QUARKUS JAR APP
+# QUARKUS JVM APP
 ##############################################################################
 # To get all the available runtimes az webapp list-runtimes --os-type linux
 echo "Creating the JAR webapp..."
@@ -23,7 +23,7 @@ echo "----------------------"
 az webapp create \
   --resource-group "$RESOURCE_GROUP" \
   --tags system="$TAG" \
-  --name "$QUARKUS_JAR_APP" \
+  --name "$QUARKUS_JVM_APP" \
   --plan "$APP_SERVICE_PLAN" \
   --runtime "JAVA:21-java21" \
   --public-network-access "Enabled"
@@ -33,7 +33,7 @@ echo "Setting the configuration of the JAR webapp..."
 echo "----------------------"
 az webapp config appsettings set \
   --resource-group "$RESOURCE_GROUP" \
-  --name "$QUARKUS_JAR_APP" \
+  --name "$QUARKUS_JVM_APP" \
   --settings QUARKUS_HTTP_PORT="80" \
              QUARKUS_DATASOURCE_JDBC_URL="$POSTGRES_DB_CONNECT_STRING" \
              QUARKUS_LANGCHAIN4J_OPENAI_API_KEY="$OPENAI_API_KEY"
@@ -42,7 +42,7 @@ echo "Deploying the JAR webapp..."
 echo "----------------------"
 az webapp deploy \
   --resource-group "$RESOURCE_GROUP" \
-  --name "$QUARKUS_JAR_APP" \
+  --name "$QUARKUS_JVM_APP" \
   --type jar \
   --src-path /Users/agoncal/Documents/Code/AGoncal/agoncal-sample-azure-monitoring/quarkus-app/target/quarkus-app-1.0.0-SNAPSHOT-runner.jar
 
@@ -51,7 +51,7 @@ echo "Get the URL of the JAR webapp..."
 echo "----------------------"
 az webapp show \
   --resource-group "$RESOURCE_GROUP" \
-  --name "$QUARKUS_JAR_APP" \
+  --name "$QUARKUS_JVM_APP" \
   --output tsv --query defaultHostName
 
 
@@ -59,18 +59,18 @@ echo "Listing the settings of the JAR webapp..."
 echo "----------------------"
 az webapp config appsettings list \
   --resource-group "$RESOURCE_GROUP" \
-  --name "$QUARKUS_JAR_APP" \
+  --name "$QUARKUS_JVM_APP" \
   --output table
 
 az webapp connection list \
   --resource-group "$RESOURCE_GROUP" \
-  --name "$QUARKUS_JAR_APP"
+  --name "$QUARKUS_JVM_APP"
 
 echo "Deleting the JAR webapp..."
 echo "----------------------"
 az webapp delete \
   --resource-group "$RESOURCE_GROUP" \
-  --name "$QUARKUS_JAR_APP" \
+  --name "$QUARKUS_JVM_APP" \
   --keep-empty-plan
 
 
@@ -123,3 +123,68 @@ az webapp delete \
   --resource-group "$RESOURCE_GROUP" \
   --name "$QUARKUS_NATIVE_APP" \
   --keep-empty-plan
+
+##############################################################################
+# QUARKUS CONTAINER UBI JVM APP
+##############################################################################
+echo "Creating the Container UBI JVM webapp..."
+echo "----------------------"
+az webapp create \
+  --resource-group "$RESOURCE_GROUP" \
+  --tags system="$TAG" \
+  --name "$QUARKUS_CONTAINER_UBI_JVM_APP" \
+  --plan "$APP_SERVICE_PLAN" \
+  --container-image-name "monitoringjavaruntime/quarkus-ubi-jvm:latest" \
+  --public-network-access "Enabled"
+
+##############################################################################
+# QUARKUS CONTAINER UBI NATIVE APP
+##############################################################################
+echo "Creating the Container UBI Native webapp..."
+echo "----------------------"
+az webapp create \
+  --resource-group "$RESOURCE_GROUP" \
+  --tags system="$TAG" \
+  --name "$QUARKUS_CONTAINER_UBI_NATIVE_APP" \
+  --plan "$APP_SERVICE_PLAN" \
+  --container-image-name "monitoringjavaruntime/quarkus-ubi-native:latest" \
+  --public-network-access "Enabled"
+
+##############################################################################
+# QUARKUS CONTAINER MICRO NATIVE APP
+##############################################################################
+echo "Creating the Container Micro Native webapp..."
+echo "----------------------"
+az webapp create \
+  --resource-group "$RESOURCE_GROUP" \
+  --tags system="$TAG" \
+  --name "$QUARKUS_CONTAINER_MICRO_NATIVE_APP" \
+  --plan "$APP_SERVICE_PLAN" \
+  --container-image-name "monitoringjavaruntime/quarkus-micro-native:latest" \
+  --public-network-access "Enabled"
+
+##############################################################################
+# QUARKUS CONTAINER MARINER JVM APP
+##############################################################################
+echo "Creating the Container Mariner JVM webapp..."
+echo "----------------------"
+az webapp create \
+  --resource-group "$RESOURCE_GROUP" \
+  --tags system="$TAG" \
+  --name "$QUARKUS_CONTAINER_MARINER_JVM_APP" \
+  --plan "$APP_SERVICE_PLAN" \
+  --container-image-name "monitoringjavaruntime/quarkus-mariner-jvm:latest" \
+  --public-network-access "Enabled"
+
+##############################################################################
+# QUARKUS CONTAINER MARINER DISTROLESS APP
+##############################################################################
+echo "Creating the Container Mariner Distroless webapp..."
+echo "----------------------"
+az webapp create \
+  --resource-group "$RESOURCE_GROUP" \
+  --tags system="$TAG" \
+  --name "$QUARKUS_CONTAINER_MARINER_DISTROLESS_APP" \
+  --plan "$APP_SERVICE_PLAN" \
+  --container-image-name "monitoringjavaruntime/quarkus-mariner-distroless:latest" \
+  --public-network-access "Enabled"

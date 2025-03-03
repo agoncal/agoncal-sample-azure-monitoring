@@ -27,7 +27,14 @@ COGNITIVE_SERVICE="oai-$PROJECT"
 AZURE_OPENAI_DEPLOYMENT_NAME="gpt-4o-mini-$PROJECT"
 
 APP_SERVICE_PLAN="asp-$PROJECT"
-QUARKUS_JAR_APP="quarkus-jar-$PROJECT"
+
+# Quarkus
+QUARKUS_JVM_APP="quarkus-jvm-$PROJECT"
 QUARKUS_NATIVE_APP="quarkus-native-$PROJECT"
+QUARKUS_CONTAINER_UBI_JVM_APP="quarkus-container-ubi-jvm-$PROJECT"
+QUARKUS_CONTAINER_UBI_NATIVE_APP="quarkus-container-ubi-native-$PROJECT"
+QUARKUS_CONTAINER_MICRO_NATIVE_APP="quarkus-container-micro-native-$PROJECT"
+QUARKUS_CONTAINER_MARINER_JVM_APP="quarkus-container-mariner-jvm-$PROJECT"
+QUARKUS_CONTAINER_MARINER_DISTROLESS_APP="quarkus-container-mariner-distroless-$PROJECT"
 
 

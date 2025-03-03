@@ -7,11 +7,11 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native -t quarkus/quarkus-app-native .
+# docker build -f src/main/docker/Dockerfile-ubi.native -t monitoringjavaruntime/quarkus-ubi-native .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 80:80 quarkus/quarkus-app-native
+# docker run -i --rm -p 80:80 monitoringjavaruntime/quarkus-ubi-native
 #
 ###
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.10
@@ -21,7 +21,7 @@ RUN chown 1001 /work \
     && chown 1001:root /work
 COPY --chown=1001:root --chmod=0755 target/*-runner /work/application
 
-EXPOSE 8080
+EXPOSE 80
 USER 1001
 
 ENTRYPOINT ["./application", "-Dquarkus.http.host=0.0.0.0"]
