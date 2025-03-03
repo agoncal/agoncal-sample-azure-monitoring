@@ -82,14 +82,14 @@ FROM mcr.microsoft.com/openjdk/jdk:21-distroless
 ENV LANGUAGE='en_US:en'
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
-COPY --chown=185 target/quarkus-app/lib/ /lib/
-COPY --chown=185 target/quarkus-app/*.jar /
-COPY --chown=185 target/quarkus-app/app/ /app/
-COPY --chown=185 target/quarkus-app/quarkus/ /quarkus/
+COPY --chown=185 target/quarkus-app/lib/ /opt/app/lib/
+COPY --chown=185 target/quarkus-app/*.jar /opt/app/
+COPY --chown=185 target/quarkus-app/app/ /opt/app/app/
+COPY --chown=185 target/quarkus-app/quarkus/ /opt/app/quarkus/
 
 EXPOSE 80
 USER 185
 ENV JAVA_OPTS_APPEND="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 
-CMD ["-jar", "/quarkus-run.jar"]
+CMD ["-jar", "/opt/app/quarkus-run.jar"]
 

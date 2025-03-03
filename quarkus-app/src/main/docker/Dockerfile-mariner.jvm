@@ -82,7 +82,6 @@ FROM mcr.microsoft.com/openjdk/jdk:21-mariner
 ENV LANGUAGE='en_US:en'
 
 # We make four distinct layers so if there are application changes the library layers can be re-used
-RUN mkdir /opt/app
 COPY --chown=185 target/quarkus-app/lib/ /opt/app/lib/
 COPY --chown=185 target/quarkus-app/*.jar /opt/app/
 COPY --chown=185 target/quarkus-app/app/ /opt/app/app/
