@@ -17,8 +17,14 @@ az group create \
   --tags system="$TAG"
 
 echo "Deploying Postgres database..."
-source ./deploy-postgres.sh
+source ./deploy-infra-postgres.sh
 
 echo "Deploying AI model..."
-source ./deploy-ai.sh
+source ./deploy-infra-ai.sh
+
+echo "Deploying Monitoring..."
+source ./deploy-infra-monitoring.sh
+
+echo "Deploying Registry..."
+source ./deploy-infra-monitoring.sh
 

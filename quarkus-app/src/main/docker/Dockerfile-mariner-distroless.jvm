@@ -7,11 +7,11 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile-mariner.distroless -t monitoringjavaruntime/quarkus-mariner-distroless .
+# docker build -f src/main/docker/Dockerfile-mariner-distroless.jvm -t monitoringjavaruntime/quarkus-mariner-distroless-jvm .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 80:80 monitoringjavaruntime/quarkus-mariner-distroless
+# docker run -i --rm -p 80:80 monitoringjavaruntime/quarkus-mariner-distroless-jvm
 #
 # If you want to include the debug port into your docker image
 # you will have to expose the debug port (default 5005 being the default) like this :  EXPOSE 8080 5005.

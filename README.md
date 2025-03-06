@@ -14,13 +14,9 @@ It uses several Java frameworks:
 * Quarkus
 * Micronaut
 
-## Run the Code
+## Quarkus
 
-Since native apps are built for the machine it runs on, make sure you execute this on a unix machine.
-
-## Local
-
-### Quarkus
+### Local Development with DevServices
 
 ```shell
 mvn test                          # Execute the tests
@@ -33,6 +29,8 @@ curl 'localhost:8701/quarkus/load?cpu=10'
 curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true'
 curl 'localhost:8701/quarkus/stats' | jq
 ```
+
+### Local Development with Docker
 
 To build a Fat-Jar version of the application to use with a local database:
 
@@ -57,20 +55,7 @@ curl 'localhost:80/quarkus/load?cpu=10&memory=20&db=true&llm=true'
 curl 'localhost:80/quarkus/stats' | jq
 ```
 
-When the application is deployed to Azure AppServices, the following properties have to be overriden:
-
-* `QUARKUS_HTTP_PORT`
-* `QUARKUS_LANGCHAIN4J_OPENAI_API_KEY`
-* `QUARKUS_DATASOURCE_JDBC_URL`
-
-```shell
-curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus'
-curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load'
-curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load?cpu=10'
-curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load?cpu=10&memory=20&db=true&llm=true'
-curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/stats' | jq
-
-```
+### Local Development - Quarkus Native
 
 To build a native application (you need GraalVM installed and `GRAALVM_HOME` set) for you local machine:
 
@@ -82,10 +67,36 @@ mvn -Pnative clean package -Dmaven.test.skip=true
 curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true&desc=GraalVM'
 ```
 
+### Azure AppServices - Quarkus JVM
+
+When the application is deployed to Azure AppServices, the following properties have to be overriden:
+
+* `QUARKUS_HTTP_PORT`
+* `QUARKUS_LANGCHAIN4J_OPENAI_API_KEY`
+* `QUARKUS_DATASOURCE_JDBC_URL`
+
+```shell
+mvn clean package -Dquarkus.package.jar.type=uber-jar -Dmaven.test.skip=true
+
+az webapp create ...
+az webapp config appsettings set ...
+az webapp deploy ...
+az webapp start ...
+
+curl 'quarkus-jvm-monitoringjava.azurewebsites.net/quarkus'
+curl 'quarkus-jvm-monitoringjava.azurewebsites.net/quarkus/load'
+curl 'quarkus-jvm-monitoringjava.azurewebsites.net/quarkus/load?cpu=10'
+curl 'quarkus-jvm-monitoringjava.azurewebsites.net/quarkus/load?cpu=10&memory=20&db=true&llm=true'
+curl 'quarkus-jvm-monitoringjava.azurewebsites.net/quarkus/stats' | jq
+
+```
+
+### Azure AppServices - Quarkus Native
+
 To build a native application for a Linux machine:
 
 ```shell
-mvn clean install -Dnative -Dquarkus.native.container-build=true -Dmaven.test.skip=true
+mvn install -Dnative -Dquarkus.native.container-build=true -Dmaven.test.skip=true
 
 curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus'
 curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load'
@@ -93,6 +104,18 @@ curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load?cpu=10'
 curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/load?cpu=10&memory=20&db=true&llm=true'
 curl 'quarkus-monitoringjavaruntimes.azurewebsites.net/quarkus/stats' | jq
 ```
+
+### Azure AppServices - Docker
+
+There are several choices to deploy a Quarkus application to Azure AppServices using Docker, and therefore, several Dockerfiles to choose from:
+
+* `Dockerfile-mariner-distroless.jvm`
+* `Dockerfile-mariner.jvm`
+* `Dockerfile-quarkus-micro.native`
+* `Dockerfile-ubi.jvm`
+* `Dockerfile-ubi.native`
+
+To build a Docker image with the JVM version of the application, you first need to build the application with:
 
 To build a Docker image with the native application (you need to build the native image on Linux):
 
