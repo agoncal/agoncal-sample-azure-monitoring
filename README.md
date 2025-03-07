@@ -48,11 +48,12 @@ Port 80 is used by default:
 mvn clean package -Dquarkus.package.jar.type=uber-jar -Dmaven.test.skip=true
 java -Dquarkus.datasource.jdbc.url="$POSTGRES_CONNECTION_STRING" -jar target/quarkus-app-1.0.0-SNAPSHOT-runner.jar
 
-curl 'localhost:80/quarkus'
-curl 'localhost:80/quarkus/load'
-curl 'localhost:80/quarkus/load?cpu=10'
-curl 'localhost:80/quarkus/load?cpu=10&memory=20&db=true&llm=true'
-curl 'localhost:80/quarkus/stats' | jq
+curl 'localhost:8701/quarkus'
+curl 'localhost:8701/quarkus/load'
+curl 'localhost:8701/quarkus/load?cpu=10'
+curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true'
+curl 'localhost:8701/quarkus/stats' | jq
+curl 'localhost:8701/quarkus/health'
 ```
 
 ### Local Development - Quarkus Native

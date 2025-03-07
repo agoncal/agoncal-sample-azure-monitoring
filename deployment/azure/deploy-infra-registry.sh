@@ -13,6 +13,7 @@ az acr create \
   --name "$CONTAINER_REGISTRY" \
   --sku Standard \
   --workspace "$LOG_ANALYTICS_QUARKUS_JVM_APP" \
+  --admin-enabled true \
   --public-network-enabled true
 
 echo "Logging into the Container Registry..."

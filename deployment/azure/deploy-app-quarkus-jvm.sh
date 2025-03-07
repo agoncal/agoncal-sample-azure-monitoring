@@ -27,7 +27,6 @@ az webapp config appsettings set \
              QUARKUS_DATASOURCE_JDBC_URL=$POSTGRES_CONNECTION_STRING \
              QUARKUS_LANGCHAIN4J_OPENAI_API_KEY=$OPENAI_KEY
 
-
 az webapp config appsettings set \
   --resource-group "$RESOURCE_GROUP" \
   --name "$QUARKUS_JVM_APP" \
@@ -45,10 +44,19 @@ az webapp config appsettings set \
              XDT_MicrosoftApplicationInsights_PreemptSdk="disabled" \
              APPLICATIONINSIGHTS_CONFIGURATION_CONTENT=""
 
-             APPINSIGHTS_INSTRUMENTATIONKEY="bca53de3-b103-4158-81d2-308290f81569" \
-             APPINSIGHTS_CONNECTIONSTRING="InstrumentationKey=bca53de3-b103-4158-81d2-308290f81569;IngestionEndpoint=https://swedencentral-0.in.applicationinsights.azure.com/;LiveEndpoint=https://swedencentral.livediagnostics.monitor.azure.com/;ApplicationId=6cbfbec1-9f5a-4804-9ec9-743ca38628e8" \
-             APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=bca53de3-b103-4158-81d2-308290f81569;IngestionEndpoint=https://swedencentral-0.in.applicationinsights.azure.com/;LiveEndpoint=https://swedencentral.livediagnostics.monitor.azure.com/;ApplicationId=6cbfbec1-9f5a-4804-9ec9-743ca38628e8" \
+echo "Setting up the Health Check..."
+echo "----------------------"
+az webapp config set \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$QUARKUS_JVM_APP" \
+  --generic-configurations '{"healthCheckPath": "/quarkus/health/"}'
 
+az monitor metrics list \
+  --resource-group "$RESOURCE_GROUP" \
+  --resource "$QUARKUS_JVM_APP" \
+  --resource-type "Microsoft.Web/sites" \
+  --metric "HealthCheckStatus" \
+  --interval 5m
 
 echo "Deploying the JAR webapp..."
 echo "----------------------"

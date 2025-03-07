@@ -22,6 +22,9 @@ echo "Building the Docker Image..."
 echo "----------------------"
 docker build -f src/main/docker/Dockerfile-ubi.jvm -t "${PROJECT}/${QUARKUS_CONTAINER_UBI_JVM_IMAGE}:${IMAGES_TAG}" .
 
+# If you want to run the container locally
+# docker run -i --rm -p 80:80 "${PROJECT}/${QUARKUS_CONTAINER_UBI_JVM_IMAGE}:${IMAGES_TAG}"
+# curl 'localhost:80/quarkus/load'
 
 echo "Tagging the Docker Image for Azure Container Registry..."
 echo "----------------------"
@@ -37,6 +40,7 @@ echo "Pushing the Docker Image to the Azure Container Registry..."
 echo "----------------------"
 docker push "${REGISTRY_URL}/${PROJECT}/${QUARKUS_CONTAINER_UBI_JVM_IMAGE}:${IMAGES_TAG}"
 
+
 echo "Creating the Container UBI JVM webapp..."
 echo "----------------------"
 az webapp create \
@@ -44,8 +48,15 @@ az webapp create \
   --tags system="$TAG" \
   --name "$QUARKUS_CONTAINER_UBI_JVM_APP" \
   --plan "$APP_SERVICE_PLAN" \
-  --container-image-name "${PROJECT}/${QUARKUS_CONTAINER_UBI_JVM_IMAGE}:${IMAGES_TAG}" \
+  --container-image-name "${REGISTRY_URL}/${PROJECT}/${QUARKUS_CONTAINER_UBI_JVM_IMAGE}:${IMAGES_TAG}" \
   --public-network-access "Enabled"
+
+echo "Setting up the Health Check..."
+echo "----------------------"
+az webapp config set \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$QUARKUS_CONTAINER_UBI_JVM_APP" \
+  --generic-configurations '{"healthCheckPath": "/quarkus/health/"}'
 
 
 echo "Setting the configuration of the UBI JVM webapp..."
@@ -80,10 +91,3 @@ az webapp delete \
   --resource-group "$RESOURCE_GROUP" \
   --name "$QUARKUS_CONTAINER_UBI_JVM_APP" \
   --keep-empty-plan
-
-
-
-
-
-
-HEROES_IMAGE="${REGISTRY_URL}/${HEROES_APP}:${IMAGES_TAG}"
