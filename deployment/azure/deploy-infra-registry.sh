@@ -12,14 +12,19 @@ az acr create \
   --tags system="$TAG" \
   --name "$CONTAINER_REGISTRY" \
   --sku Standard \
-  --workspace "$LOG_ANALYTICS_QUARKUS_JVM_APP" \
+  --workspace "$LOG_ANALYTICS_APPSERVICE_QUARKUS_JVM_APP" \
   --admin-enabled true \
   --public-network-enabled true
+
+az acr update \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$CONTAINER_REGISTRY" \
+  --anonymous-pull-enabled true
 
 echo "Logging into the Container Registry..."
 echo "----------------------"
 az acr login \
-  --name "$CONTAINER_REGISTRY" \
+  --name "$CONTAINER_REGISTRY"
 
 echo "Listing the images stored in the Container Registry..."
 echo "----------------------"

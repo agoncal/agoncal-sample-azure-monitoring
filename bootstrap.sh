@@ -13,18 +13,18 @@ rm -rf pom.xml \
   tomcat-app \
   jboss-app \
   commons
-  
+
 echo "### Bootstraps the Common App"
 mvn archetype:generate "-DgroupId=io.azure.monitoring.javaruntime" "-DartifactId=commons" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DarchetypeVersion=1.5" "-Dversion=1.0.0-SNAPSHOT" -DjavaCompilerVersion=21 -DinteractiveMode=false
-mvn archetype:generate "-DgroupId=io.azure.monitoring.javaruntime" "-DartifactId=tomcat-app" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DarchetypeVersion=1.5" "-Dversion=1.0.0-SNAPSHOT" -DjavaCompilerVersion=21 -DinteractiveMode=false  
-mvn archetype:generate "-DgroupId=io.azure.monitoring.javaruntime" "-DartifactId=jboss-app" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DarchetypeVersion=1.5" "-Dversion=1.0.0-SNAPSHOT" -DjavaCompilerVersion=21 -DinteractiveMode=false  
+mvn archetype:generate "-DgroupId=io.azure.monitoring.javaruntime" "-DartifactId=tomcat-app" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DarchetypeVersion=1.5" "-Dversion=1.0.0-SNAPSHOT" -DjavaCompilerVersion=21 -DinteractiveMode=false
+mvn archetype:generate "-DgroupId=io.azure.monitoring.javaruntime" "-DartifactId=jboss-app" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DarchetypeVersion=1.5" "-Dversion=1.0.0-SNAPSHOT" -DjavaCompilerVersion=21 -DinteractiveMode=false
 
 echo "### Bootstraps the Micronaut App"
 curl --location --request GET 'https://launch.micronaut.io/create/default/io.azure.monitoring.javaruntime.micronaut.micronaut-app?lang=JAVA&build=MAVEN&test=JUNIT&javaVersion=JDK_21&features=data-jpa&features=postgres&features=testcontainers&features=micronaut-test-rest-assured' --output micronaut-app.zip && unzip -o micronaut-app.zip && rm micronaut-app.zip
 
 echo "### Bootstraps the Quarkus App"
-mvn io.quarkus:quarkus-maven-plugin:3.18.3:create \
-    -DplatformVersion=3.18.3 \
+mvn io.quarkus:quarkus-maven-plugin:3.19.2:create \
+    -DplatformVersion=3.19.2 \
     -DprojectGroupId=io.azure.monitoring.javaruntime \
     -DprojectArtifactId=quarkus-app \
     -DprojectName="Azure Container Apps and Java Runtimes Workshop :: Quarkus" \
@@ -47,7 +47,7 @@ echo -e "<?xml version=\"1.0\"?>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Monitoring Java Runtimes on Azure</name>
-  
+
   <modules>
     <module>commons</module>
     <module>jboss-app</module>

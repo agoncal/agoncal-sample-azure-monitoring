@@ -24,7 +24,7 @@ mvn test                          # Execute the tests
 mvn quarkus:dev                   # Execute the application
 
 curl 'localhost:8701/quarkus'
-curl 'localhost:8701/quarkus/load'
+curl 'localhost:80/quarkus/load'
 curl 'localhost:8701/quarkus/load?cpu=10'
 curl 'localhost:8701/quarkus/load?cpu=10&memory=20&db=true&llm=true'
 curl 'localhost:8701/quarkus/stats' | jq

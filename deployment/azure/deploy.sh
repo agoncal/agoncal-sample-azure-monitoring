@@ -26,5 +26,9 @@ echo "Deploying Monitoring..."
 source ./deploy-infra-monitoring.sh
 
 echo "Deploying Registry..."
-source ./deploy-infra-monitoring.sh
+source ./deploy-infra-registry.sh
 
+
+az group delete \
+  --name "$RESOURCE_GROUP" \
+  --yes

@@ -3,8 +3,10 @@
 # Dependencies: curl
 ##############################################################################
 
-# URL=quarkus-jvm-monitoringjava.azurewebsites.net/quarkus
-URL=quarkus-container-ubi-jvm-monitoringjava.azurewebsites.net/quarkus
+#URL=app-quarkus-ubi-jvm.azurewebsites.net/quarkus
+# URL=app-quarkus-jvm.azurewebsites.net/quarkus
+ URL=app-quarkus-ubi-native.azurewebsites.net/quarkus
+# URL=https://ca-quarkus-ubi-jvm.wonderfulground-be1df78e.swedencentral.azurecontainerapps.io/quarkus
 
 while true; do
   curl "$URL"

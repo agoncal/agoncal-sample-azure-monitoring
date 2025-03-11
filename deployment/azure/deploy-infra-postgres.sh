@@ -27,7 +27,7 @@ az postgres flexible-server execute \
   --admin-user "$POSTGRES_DB_ADMIN" \
   --admin-password "$POSTGRES_DB_PWD" \
   --database-name "$POSTGRES_DB_SCHEMA" \
-  --file-path "../local/db-init/initialize-databases.sql"
+  --file-path "/Users/agoncal/Documents/Code/AGoncal/agoncal-sample-azure-monitoring/deployment/local/db-init/initialize-databases.sql"
 
 
 echo "Storing the connection string in environment variables..."
