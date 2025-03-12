@@ -32,6 +32,7 @@ echo "----------------------"
 mvn clean package -Dmaven.test.skip=true
 
 
+# docker buildx ls
 echo "Building the Docker Images for JVM Quarkus application..."
 echo "----------------------"
 docker buildx build --platform=linux/amd64,linux/arm64 -f src/main/docker/Dockerfile-ubi.jvm     -t "${CONTAINER_QUARKUS_UBI_JVM_IMAGE}" .
