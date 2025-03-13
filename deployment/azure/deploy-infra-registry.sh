@@ -12,7 +12,7 @@ az acr create \
   --tags system="$TAG" \
   --name "$CONTAINER_REGISTRY" \
   --sku Standard \
-  --workspace "$LOG_ANALYTICS_APPSERVICE_QUARKUS_JVM_APP" \
+  --workspace "$LOG_ANALYTICS_WORKSPACE" \
   --admin-enabled true \
   --public-network-enabled true
 

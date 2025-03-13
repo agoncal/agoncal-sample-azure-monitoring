@@ -22,6 +22,14 @@ az monitor app-insights component create \
   --workspace "$LOG_ANALYTICS_WORKSPACE" \
   --kind java
 
+az monitor app-insights component create \
+  --resource-group "$RESOURCE_GROUP" \
+  --location "$LOCATION" \
+  --tags system="$TAG" \
+  --app "$APP_INSIGHTS_APPSERVICE_QUARKUS_UBI_NATIVE_APP" \
+  --workspace "$LOG_ANALYTICS_WORKSPACE" \
+  --kind java
+
 
 
 echo "Deleting Application Insights..."
@@ -29,6 +37,10 @@ echo "----------------------"
 az monitor app-insights component delete \
   --resource-group "$RESOURCE_GROUP" \
   --app "$APP_INSIGHTS_APPSERVICE_QUARKUS_JVM_APP"
+
+az monitor app-insights component delete \
+  --resource-group "$RESOURCE_GROUP" \
+  --app "$APP_INSIGHTS_APPSERVICE_QUARKUS_UBI_NATIVE_APP"
 
 echo "Deleting Log Analytics..."
 echo "----------------------"

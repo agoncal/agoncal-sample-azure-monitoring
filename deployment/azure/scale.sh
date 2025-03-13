@@ -5,8 +5,9 @@
 
 #URL=app-quarkus-ubi-jvm.azurewebsites.net/quarkus
 # URL=app-quarkus-jvm.azurewebsites.net/quarkus
- URL=app-quarkus-ubi-native.azurewebsites.net/quarkus
+# URL=app-quarkus-ubi-native.azurewebsites.net/quarkus
 # URL=https://ca-quarkus-ubi-jvm.wonderfulground-be1df78e.swedencentral.azurecontainerapps.io/quarkus
+URL=https://app-quarkus-ubi-native.azurewebsites.net/quarkus
 
 while true; do
   curl "$URL"
