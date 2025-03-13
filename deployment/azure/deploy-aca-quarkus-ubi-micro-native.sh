@@ -7,8 +7,8 @@ echo "----------------------"
 az containerapp create \
   --resource-group "$RESOURCE_GROUP" \
   --tags system="$TAG" \
-  --name "$CONTAINERAPPS_QUARKUS_UBI_NATIVE_APP" \
-  --image "${REGISTRY_URL}/${CONTAINER_QUARKUS_UBI_NATIVE_IMAGE}" \
+  --name "$CONTAINERAPPS_QUARKUS_UBI_MICRO_NATIVE_APP" \
+  --image "${REGISTRY_URL}/${CONTAINER_QUARKUS_UBI_MICRO_NATIVE_IMAGE}" \
   --environment "$CONTAINERAPPS_ENVIRONMENT" \
   --ingress external \
   --target-port 80 \
