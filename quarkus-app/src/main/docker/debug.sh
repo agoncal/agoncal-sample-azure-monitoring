@@ -1,25 +1,5 @@
 #!/bin/bash
-echo "*"
-echo "***"
-echo "*****"
-echo "*******"
-echo $(pwd)
-echo "*******"
-echo $(uname -a)
-echo "*******"
-echo $(java -version)
-echo "*******"
-echo $(file /work/application/quarkus-run.jar)
-echo "*******"
-echo "*****"
-echo "***"
-echo "*"
-
-#!/bin/bash
-
-# docker-system-info.sh - Comprehensive system information script for Docker containers
-# Usage: ./docker-system-info.sh
-
+# Comprehensive system information script for Docker containers
 echo "======================================"
 echo "Docker Container System Information"
 echo "======================================"
@@ -130,8 +110,7 @@ echo
 echo "--- Environment Variables ---"
 echo "Total environment variables: $(env | wc -l)"
 echo "Selected environment variables (sensitive info redacted):"
-env | grep -v -E 'KEY|SECRET|PASS|TOKEN|PWD' | sort | head -10
-echo "..."
+env | grep -v -E 'KEY|SECRET|PASS|TOKEN|PWD' | sort
 echo
 
 # Docker-specific information (if available)
@@ -145,6 +124,17 @@ if [ -f /proc/self/cgroup ]; then
     echo "Control groups:"
     cat /proc/self/cgroup
 fi
+echo
+
+# Java Version
+echo "--- Java Version ---"
+echo "java -version: $(java -version)"
+echo
+
+# Binary information
+echo "--- Binary Version ---"
+echo "ls /work/application: $(ls /work/application)"
+echo "file /work/application/: $(file /work/application/quarkus-run.jar)"
 echo
 
 echo "======================================"
