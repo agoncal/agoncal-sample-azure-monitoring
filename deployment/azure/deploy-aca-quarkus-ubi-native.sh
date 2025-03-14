@@ -21,6 +21,24 @@ az containerapp create \
              QUARKUS_LANGCHAIN4J_OPENAI_API_KEY="$OPENAI_API_KEY"
 
 
+echo "Creating the Native ACA..."
+echo "----------------------"
+az containerapp update \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "$CONTAINERAPPS_QUARKUS_UBI_NATIVE_APP" \
+  --image "${REGISTRY_URL}/${CONTAINER_QUARKUS_UBI_NATIVE_IMAGE}" \
+  --environment "$CONTAINERAPPS_ENVIRONMENT" \
+  --ingress external \
+  --target-port 80 \
+  --min-replicas 1 \
+  --runtime "java" \
+  --enable-java-agent "true" \
+  --enable-java-metrics "true" \
+  --settings QUARKUS_HTTP_PORT="80" \
+             QUARKUS_DATASOURCE_JDBC_URL="$POSTGRES_DB_CONNECT_STRING" \
+             QUARKUS_LANGCHAIN4J_OPENAI_API_KEY="$OPENAI_API_KEY"
+
+
 echo "Retrieving the URL of the Native app..."
 echo "----------------------"
 CONTAINERAPPS_QUARKUS_MARINER_NATIVE_APP_URL="https://$(az containerapp ingress show \

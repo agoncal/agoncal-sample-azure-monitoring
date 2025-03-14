@@ -133,7 +133,7 @@ echo
 
 # Binary information
 echo "--- Binary Version ---"
-echo "ls /work: $(ls /work)"
+echo "ls /work: $(ls -l /work)"
 echo "file /work/application: $(file /work/application)"
 echo
 

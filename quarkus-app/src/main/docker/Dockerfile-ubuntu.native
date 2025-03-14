@@ -1,0 +1,35 @@
+####
+# This Dockerfile is used in order to build a container that runs the Quarkus application in native (no JVM) mode.
+#
+# Before building the container image run:
+#
+# ./mvnw clean package -Dnative -Dquarkus.native.container-build=true -Dmaven.test.skip=true
+#
+# Then, build the image with:
+#
+# docker build -f src/main/docker/Dockerfile-ubuntu.native -t monitoringjava/quarkus-ubuntu-native .
+#
+# Then run the container using:
+#
+# docker run -i --rm -p 80:80 monitoringjava/quarkus-ubuntu-native
+#
+###
+FROM mcr.microsoft.com/openjdk/jdk:21-ubuntu
+
+RUN apt-get update && \
+    apt-get install -y iproute2 && \
+    apt-get install -y file && \
+    apt-get clean
+
+
+WORKDIR /work/
+RUN chown 1001 /work \
+    && chmod "g+rwX" /work \
+    && chown 1001:root /work
+COPY --chown=1001:root --chmod=0755 target/debug.sh /work
+COPY --chown=1001:root --chmod=0755 target/*-runner /work/application
+
+EXPOSE 80
+USER 1001
+
+ENTRYPOINT ["/bin/sh", "-c", "/work/debug.sh && ./application -Dquarkus.http.host=0.0.0.0"]
