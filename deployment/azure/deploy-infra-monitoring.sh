@@ -30,6 +30,26 @@ az monitor app-insights component create \
   --workspace "$LOG_ANALYTICS_WORKSPACE" \
   --kind java
 
+az monitor app-insights component create \
+  --resource-group "$RESOURCE_GROUP" \
+  --location "$LOCATION" \
+  --tags system="$TAG" \
+  --app "$APP_INSIGHTS_APPSERVICE_QUARKUS_UBUNTU_NATIVE_APP" \
+  --workspace "$LOG_ANALYTICS_WORKSPACE" \
+  --kind java
+
+
+
+echo "Getting Application Insights Key..."
+echo "----------------------"
+APP_INSIGHTS_APPSERVICE_QUARKUS_UBUNTU_NATIVE_CONNECTION_STRING="$(az monitor app-insights component show \
+  --resource-group "$RESOURCE_GROUP" \
+  --app "$APP_INSIGHTS_APPSERVICE_QUARKUS_UBUNTU_NATIVE_APP" \
+  --query connectionString \
+  --output tsv)"
+
+echo "APP_INSIGHTS_APPSERVICE_QUARKUS_UBUNTU_NATIVE_CONNECTION_STRING=$APP_INSIGHTS_APPSERVICE_QUARKUS_UBUNTU_NATIVE_CONNECTION_STRING"
+
 
 
 echo "Deleting Application Insights..."
@@ -41,6 +61,11 @@ az monitor app-insights component delete \
 az monitor app-insights component delete \
   --resource-group "$RESOURCE_GROUP" \
   --app "$APP_INSIGHTS_APPSERVICE_QUARKUS_UBI_NATIVE_APP"
+
+az monitor app-insights component delete \
+  --resource-group "$RESOURCE_GROUP" \
+  --app "$APP_INSIGHTS_APPSERVICE_QUARKUS_UBUNTU_NATIVE_APP"
+
 
 echo "Deleting Log Analytics..."
 echo "----------------------"

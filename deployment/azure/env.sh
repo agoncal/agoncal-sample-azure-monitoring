@@ -21,6 +21,9 @@ POSTGRES_SKU="Standard_B1ms"
 POSTGRES_TIER="Burstable"
 POSTGRES_DB_CONNECT_STRING="jdbc:postgresql://${POSTGRES_DB}.postgres.database.azure.com:5432/${POSTGRES_DB_SCHEMA}?ssl=true&sslmode=require"
 
+# Storage Account
+STORAGE_ACCOUNT="st$PROJECT"
+
 # App Service
 APPSERVICE_PLAN="asp-$PROJECT"
 APPSERVICE_QUARKUS_JVM_APP="app-quarkus-jvm"
@@ -35,12 +38,14 @@ CONTAINERAPPS_ENVIRONMENT="cae-$PROJECT"
 CONTAINERAPPS_QUARKUS_UBI_JVM_APP="ca-quarkus-ubi-jvm"
 CONTAINERAPPS_QUARKUS_UBI_NATIVE_APP="ca-quarkus-ubi-native"
 CONTAINERAPPS_QUARKUS_UBI_MICRO_NATIVE_APP="ca-quarkus-ubi-micro-native"
+CONTAINERAPPS_QUARKUS_UBUNTU_NATIVE_APP="ca-quarkus-ubuntu-native"
 
 # FUNCTION
 FUNCTIONAPPS_PLAN="fae-$PROJECT"
 FUNCTIONAPPS_QUARKUS_UBI_JVM_APP="func-quarkus-ubi-jvm"
 FUNCTIONAPPS_QUARKUS_UBI_NATIVE_APP="func-quarkus-ubi-native"
 FUNCTIONAPPS_QUARKUS_UBI_MICRO_NATIVE_APP="func-quarkus-ubi-micro-native"
+FUNCTIONAPPS_QUARKUS_UBUNTU_NATIVE_APP="func-quarkus-ubuntu-native"
 
 
 # Log Analytics
