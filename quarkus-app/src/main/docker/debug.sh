@@ -133,8 +133,8 @@ echo
 
 # Binary information
 echo "--- Binary Version ---"
-echo "ls /work/application: $(ls /work/application)"
-echo "file /work/application/: $(file /work/application/quarkus-run.jar)"
+echo "ls /work: $(ls /work)"
+echo "file /work/application: $(file /work/application)"
 echo
 
 echo "======================================"

@@ -1,4 +1,5 @@
 *
+!target/debug.sh
 !target/*-runner
 !target/*-runner.jar
 !target/lib/*
