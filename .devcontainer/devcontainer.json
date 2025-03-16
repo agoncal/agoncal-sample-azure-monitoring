@@ -6,6 +6,9 @@
   "image": "mcr.microsoft.com/devcontainers/javascript-node:20-bullseye",
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
     "ghcr.io/devcontainers/features/java:1": {
       "version": "21",
       "installMaven": "true",
@@ -36,7 +39,6 @@
   },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [],
-
   // Set minimal host requirements for the container.
   "hostRequirements": {
     "cpus": 4,

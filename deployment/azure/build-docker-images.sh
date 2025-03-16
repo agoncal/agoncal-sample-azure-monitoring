@@ -59,6 +59,7 @@ docker push "${REGISTRY_URL}/${CONTAINER_QUARKUS_MARINER_JVM_IMAGE}"
 echo "Building the Native Quarkus application..."
 echo "----------------------"
 mvn clean install -Dnative -Dquarkus.native.container-build=true -Dmaven.test.skip=true
+#  ./target/quarkus-app-1.0.0-SNAPSHOT-runner
 
 echo "Building the Docker Images for the Native Quarkus applications..."
 echo "----------------------"
