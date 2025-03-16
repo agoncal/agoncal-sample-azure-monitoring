@@ -42,6 +42,22 @@ echo "Deploying Registry..."
 echo "----------------------"
 source ./deploy-infra-registry.sh
 
+echo "Deploying Storage..."
+echo "----------------------"
+source ./deploy-infra-storage.sh
+
+echo "Deploying AppService..."
+echo "----------------------"
+source ./deploy-infra-appservice.sh
+
+echo "Deploying ACA..."
+echo "----------------------"
+source ./deploy-infra-aca.sh
+
+echo "Deploying Azure Function..."
+echo "----------------------"
+source ./deploy-infra-functionapp.sh
+
 
 echo "Deleting Resource Group..."
 echo "----------------------"
