@@ -41,8 +41,10 @@
   "forwardPorts": [],
   // Set minimal host requirements for the container.
   "hostRequirements": {
-    "cpus": 4,
-    "memory": "16gb"
+    "cpus": 2,
+    "memory": "8gb"
+//    "cpus": 4,
+//    "memory": "16gb"
   }
 
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
