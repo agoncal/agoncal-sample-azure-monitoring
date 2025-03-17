@@ -1,0 +1,56 @@
+@startuml
+skinparam dpi 300
+
+allow_mixing
+hide empty members
+'left to right direction
+
+node "Mac" as mac {
+  storage Quarkus
+}
+note left
+  Apple M1 Max
+  ARM64 architecture
+  Java 21 / GraalVM 21 GraalCE
+  Quarkus default Docker image UBI
+  Created a Docker image Ubuntu
+end note
+
+node "DevContainer" as devcontainer
+note left
+   Ubuntu
+   4 CPUs / 16GB RAM
+   GLIBC 2.31
+   GraalVM installed
+   Local execution succeed with GraalVM
+   Quarkus default Docker compilation failed
+end note
+
+cloud "Azure AppService" as appservice
+note bottom
+  AppServices runs on Ubuntu
+end note
+
+artifact "ARM64 binary" as arm64
+note top
+  Compiled on Mac
+  ARM64 binary
+  Containerised in UBI / Mariner / Ubuntu
+  Everything failed
+end note
+
+artifact "AMD64 binary" as amd64
+note bottom
+  Compiled on DevContainer
+  AMD64 binary
+  Containerised in UBI / Mariner failed
+  Containerised in Ubuntu succeed
+end note
+
+mac -> arm64
+arm64 -[#red]-> appservice : failed
+
+mac -down-> devcontainer
+devcontainer -> amd64
+amd64 -> appservice
+@enduml

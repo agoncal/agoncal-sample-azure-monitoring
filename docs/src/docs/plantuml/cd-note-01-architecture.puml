@@ -1,0 +1,27 @@
+@startuml
+skinparam dpi 600
+
+'left to right direction
+
+node "Mac" as mac {
+  agent Quarkus as macquarkus
+  action GraalVM as macgraalvm
+}
+
+cloud "Azure" as azure {
+  node "Container Registry" as azurecr
+  node "Azure AppService" as azureappservice
+  node "Postgres Flexible Server" as azurepostgres
+  node "Azure OpenAI" as openAI
+}
+
+artifact "Native binary" as binary
+
+mac .right.> binary
+binary .right.> azurecr
+
+azurecr ..> azureappservice
+azureappservice ..> azurepostgres
+azureappservice .> openAI
+macquarkus -[hidden]-> macgraalvm
+@enduml

@@ -1,0 +1,3 @@
+= Deploy and Monitor a Native Binary to Azure Function
+{author-name}
+

@@ -1,0 +1,47 @@
+@startuml
+skinparam dpi 600
+
+'left to right direction
+
+node "Mac" as mac {
+  agent Quarkus as macquarkus
+  action JVM as macjvm
+}
+note bottom
+  Mac used for local development
+  Compiles and runs with JVM
+  ARM64 architecture
+end note
+
+node "DevContainer" as devcontainer {
+  agent Quarkus as devcontainerquarkus
+  action GraalVM as devcontainergraal
+}
+note bottom
+  DevContainer used for native compilation
+  Compiles and runs with GraalVM
+  AMD64 architecture
+  GLIBC 2.31
+end note
+
+cloud "Azure" as azure {
+  node "Container Registry" as azurecr
+  node "Azure AppService" as azureappservice
+  node "Postgres Flexible Server" as azurepostgres
+}
+
+artifact "Native binary" as binary
+
+cloud "Azure OpenAI" as openAI
+
+mac .right.> devcontainer
+devcontainer .right.> binary
+binary .right.> azurecr
+
+azurecr ..> azureappservice
+azureappservice ..> azurepostgres
+azureappservice .> openAI
+
+macquarkus -[hidden]-> macjvm
+devcontainerquarkus -[hidden]-> devcontainergraal
+@enduml

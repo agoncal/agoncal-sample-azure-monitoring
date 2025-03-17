@@ -1,13 +1,53 @@
-= Blog Post 1: Deploy a JAR to Azure AppService and Get the Default Monitoring
+= Deploy a JAR to Azure AppService and Get the Default Monitoring
 {author-name}
 
-blah blah blah
-blah blah blah
-blah blah blah
-blah blah blah
-blah blah blah
-blah blah blah
-blah blah blah
-blah blah blah
-blah blah blah
-blah blah blah
+Introduction:
+•	What readers will learn in this post: deploy a Fat Jar to Azure AppService and get the default monitoring
+•	Brief overview of the different Azure targets where you can deploy a Java application: Azure AppService, Azure Container Apps, Azure Function, AKS
+•	Presentation of Azure AppService. Why deploy on Azure AppService (suited for web applications, if microservices, then use ACA or AKS)
+•	Presentation of the Quarkus application (provide a simple example or GitHub repository link): Application adds some CPU and Memory load, as well as uses a Azure Postgres Flexible server to store the loads, and invokes a remote OpenAI GPT-4o model
+
+Prerequisites:
+•	Azure account and Azure CLI installed
+•	Java and Maven installed
+•	Quarkus application
+
+Step 1: Develop the Quarkus Application
+•	Load endpoint at ‘/load’ to load the CPU and Memory
+•	Health check endpoint at ‘health’ returns the health of the system (useful for monitoring)
+•	Configure the Quarkus application for develppment and production
+•	Create a production-ready Fat JAR to deploy to AppService
+•	Essential configuration in application.properties
+
+Step 2: Set Up Azure AppService with Azure CLI
+•	Create a resource group
+•	Set up an AppService plan
+•	Configure a Java web app
+
+Step 3: Deploy the JAR
+•	Deploy the Quarkus application Fat JAR Using Azure CLI
+
+Step 4: Verify the Deployment
+•	Access your application (curl commands to add some load, get the health)
+•	Basic troubleshooting
+
+Step 5: Explore Default Monitoring
+•	Navigating Azure Monitor
+•	Key metrics available out-of-the-box : Http 5xx, Data In, Data Out, Requests, Response Time
+•	Add more metrics: Average memory working set, CPU time, File System Usage, Health check status, IO read bytes per second, IO write operations per second, requests, response time, etc.
+•	Log (KQL) / Log Stream
+•	Alerts (Configure when the alert rule should trigger by selecting a signal and defining its logic.)
+•	Advisor recommendations
+•	Health check
+
+Conclusion:
+•	Summary of what you've learned
+•	Limitations of default monitoring
+•	Preview of next post on Application Insights
+
+Definitions:
+•	Azure AppService
+•	Azure Monitor
+
+Refernces:
+•	http://

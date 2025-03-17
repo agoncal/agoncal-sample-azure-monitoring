@@ -74,6 +74,7 @@
           <attributes>
             <allow-uri-read/>
             <author-name>Antonio Goncalves</author-name>
+            <imagesdir>./images</imagesdir>
           </attributes>
         </configuration>
 
@@ -85,8 +86,8 @@
               <goal>process-asciidoc</goal>
             </goals>
             <configuration>
-              <sourceDocumentName>blog-post-01.adoc</sourceDocumentName>
-              <outputFile>${project.build.directory}/generated-docs/blog-post-01.pdf</outputFile>
+              <sourceDocumentName>cd-note-01.adoc</sourceDocumentName>
+              <outputFile>${project.build.directory}/generated-docs/cd-note-01.pdf</outputFile>
               <backend>pdf</backend>
             </configuration>
           </execution>
@@ -97,8 +98,8 @@
               <goal>process-asciidoc</goal>
             </goals>
             <configuration>
-              <sourceDocumentName>blog-post-01.adoc</sourceDocumentName>
-              <outputFile>${project.build.directory}/generated-docs/blog-post-01.html</outputFile>
+              <sourceDocumentName>cd-note-01.adoc</sourceDocumentName>
+              <outputFile>${project.build.directory}/generated-docs/cd-note-01.html</outputFile>
               <backend>xhtml5</backend>
             </configuration>
           </execution>

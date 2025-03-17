@@ -137,6 +137,11 @@ echo "ls /work: $(ls -l /work)"
 echo "file /work/application: $(file /work/application)"
 echo
 
+# GLIBC version
+echo "--- GLIBC Version ---"
+echo "ldd --version: $(ldd --version)"
+echo
+
 echo "======================================"
 echo "End of System Information Report"
 echo "======================================"
