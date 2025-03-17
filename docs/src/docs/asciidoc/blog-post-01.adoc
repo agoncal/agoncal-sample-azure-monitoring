@@ -1,0 +1,13 @@
+= Blog Post 1: Deploy a JAR to Azure AppService and Get the Default Monitoring
+{author-name}
+
+blah blah blah
+blah blah blah
+blah blah blah
+blah blah blah
+blah blah blah
+blah blah blah
+blah blah blah
+blah blah blah
+blah blah blah
+blah blah blah

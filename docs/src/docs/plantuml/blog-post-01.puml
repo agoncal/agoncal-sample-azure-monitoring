@@ -1,0 +1,49 @@
+@startuml
+skinparam dpi 600
+
+allow_mixing
+hide empty members
+'left to right direction
+
+'Classes and Interfaces
+class ChatResponse {
+    -metadata:ChatResponseMetadata
+    -aiMessage:AiMessage
+}
+class ChatResponseMetadata {
+    -id:String
+    -modelName:String
+    -tokenUsage:TokenUsage
+    -finishReason:FinishReason
+}
+class ChatRequest {
+    -messages:List<ChatMessage>
+    -parameters:ChatRequestParameters
+}
+interface ChatRequestParameters {
+    +String modelName();
+    +Double temperature();
+    +Double topP();
+    +Integer topK();
+    +Double frequencyPenalty();
+    +Double presencePenalty();
+    +Integer maxOutputTokens();
+    +List<String> stopSequences();
+    +List<ToolSpecification> toolSpecifications();
+    +ToolChoice toolChoice();
+    +ResponseFormat responseFormat();
+}
+
+interface ChatLanguageModel #lightblue {
+    +String chat(String userMessage)
+    +ChatResponse chat(ChatRequest chatRequest)
+    +ChatResponse chat(ChatMessage... messages)
+    +ChatResponse chat(List<ChatMessage> messages)
+}
+
+'Relationships
+ChatLanguageModel .right.> ChatResponse
+ChatLanguageModel .down.> ChatRequest
+ChatResponse ..> ChatResponseMetadata
+ChatRequest ..> ChatRequestParameters
+@enduml
