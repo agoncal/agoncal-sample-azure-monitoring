@@ -15,9 +15,8 @@ source ./env.sh
 echo "Loging to Azure..."
 echo "----------------------"
 az login
-# az login --tenant xxxx-xxx-xxx-xxx-xxxx  --use-device-code
-
 # az account show
+# az login --tenant xxxx-xxx-xxx-xxx-xxxx  --use-device-code
 
 echo "Creating resource group..."
 echo "----------------------"

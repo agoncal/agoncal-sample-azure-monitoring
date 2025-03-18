@@ -1,5 +1,5 @@
 @startuml
-skinparam dpi 600
+skinparam dpi 300
 
 'left to right direction
 
@@ -30,7 +30,9 @@ cloud "Azure" as azure {
   node "Postgres Flexible Server" as azurepostgres
 }
 
-artifact "Native binary" as binary
+node "Docker Container" as docker {
+  artifact "Native binary" as binary
+}
 
 cloud "Azure OpenAI" as openAI
 

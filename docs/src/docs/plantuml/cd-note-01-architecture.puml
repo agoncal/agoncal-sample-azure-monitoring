@@ -1,5 +1,5 @@
 @startuml
-skinparam dpi 600
+skinparam dpi 300
 
 'left to right direction
 
@@ -9,7 +9,6 @@ node "Mac" as mac {
 }
 
 cloud "Azure" as azure {
-  node "Container Registry" as azurecr
   node "Azure AppService" as azureappservice
   node "Postgres Flexible Server" as azurepostgres
   node "Azure OpenAI" as openAI
@@ -18,9 +17,8 @@ cloud "Azure" as azure {
 artifact "Native binary" as binary
 
 mac .right.> binary
-binary .right.> azurecr
+binary .right.> azureappservice
 
-azurecr ..> azureappservice
 azureappservice ..> azurepostgres
 azureappservice .> openAI
 macquarkus -[hidden]-> macgraalvm

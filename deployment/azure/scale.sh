@@ -8,36 +8,51 @@
 # URL=app-quarkus-ubi-native.azurewebsites.net/quarkus
 # URL=https://ca-quarkus-ubi-jvm.wonderfulground-be1df78e.swedencentral.azurecontainerapps.io/quarkus
 #URL=https://app-quarkus-ubi-native.azurewebsites.net/quarkus
-URL=https://app-quarkus-ubuntu-native.azurewebsites.net/quarkus
-MODE=Native
-#MODE=JVM
+URL1=https://app-quarkus-ubuntu-native.azurewebsites.net/quarkus
+URL2=https://monit-app-quarkus-ubuntu-native.azurewebsites.net/quarkus
+DESC1=Native
+DESC2=NativeOTLP
 
 while true; do
-  curl "$URL"
+  curl "$URL1"
+  echo
+  curl "$URL2"
   echo
   sleep 1
 
-  curl "$URL/load?desc=$MODE"
+  curl "$URL1/load?desc=$DESC1"
+  echo
+  curl "$URL2/load?desc=$DESC2"
   echo
   sleep 1
 
-  curl "$URL/load?cpu=10&desc=$MODE"
+  curl "$URL1/load?cpu=10&desc=$DESC1"
+  echo
+  curl "$URL2/load?cpu=10&desc=$DESC2"
   echo
   sleep 1
 
-  curl "$URL/load?cpu=10&memory=20&desc=$MODE"
+  curl "$URL1/load?cpu=10&memory=20&desc=$DESC1"
+  echo
+  curl "$URL2/load?cpu=10&memory=20&desc=$DESC2"
   echo
   sleep 1
 
-  curl "$URL/load?cpu=50&memory=50&db=true&desc=$MODE"
+  curl "$URL1/load?cpu=50&memory=50&db=true&desc=$DESC1"
+  echo
+  curl "$URL2/load?cpu=50&memory=50&db=true&desc=$DESC2"
   echo
   sleep 1
 
-  curl "$URL/load?cpu=100&memory=100&db=true&desc=$MODE"
+  curl "$URL1/load?cpu=100&memory=100&db=true&desc=$DESC1"
+  echo
+  curl "$URL2/load?cpu=100&memory=100&db=true&desc=$DESC2"
   echo
   sleep 1
 
-  curl "$URL/load?cpu=10&memory=20&db=true&llm=true&desc=$MODE"
+  curl "$URL1/load?cpu=10&memory=20&db=true&llm=true&desc=$DESC1"
+  echo
+  curl "$URL2/load?cpu=10&memory=20&db=true&llm=true&desc=$DESC2"
   echo
   sleep 1
 done
