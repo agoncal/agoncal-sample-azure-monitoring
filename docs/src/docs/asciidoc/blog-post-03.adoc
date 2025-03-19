@@ -1,45 +1,54 @@
-= Deploy a Native Binary to Azure AppService and Get the Monitoring
-{author-name}
+= Deploy and Monitor a Native Binary on Azure AppService
+:author: {author-name}
+:icons: font
+:source-highlighter: highlight.js
 
-Introduction:
-•	Recap of the series so far
-•	Benefits of native compilation with GraalVM
-•	What to expect in terms of performance and monitoring differences
+== Introduction:
+* Recap of the series so far
+* Benefits of native compilation with GraalVM
+* What to expect in terms of performance and monitoring differences
 
-Step 1: Configure Quarkus for Native Compilation
-•	Required dependencies and configurations
-•	GraalVM setup considerations
-•	Handling reflection and other native compilation challenges
+== 1: Configure Quarkus for Native Compilation
+* Required dependencies and configurations
+* GraalVM setup considerations
+* Handling reflection and other native compilation challenges
 
-Step 2: Build the Native Binary
-•	Using Maven/Gradle for native compilation
-•	Handling environment-specific configurations
-•	Optimizing for cloud deployment
+== 2: Build the Native Binary
+* Using Maven for native compilation
+* Handling environment-specific configurations
+* Optimizing for cloud deployment
 
-Step 3: Modify Azure AppService Configuration
-•	Adapting the web app configuration for native executables
-•	Custom startup commands
-•	Environment variables
+== 3: Modify Azure AppService Configuration
+* Adapting the web app configuration for native executables
+* Custom startup commands
+* Environment variables
 
-Step 4: Deploy the Native Binary
-•	Upload strategies
-•	Deployment verification
-•	Troubleshooting common issues
+== 4: Deploy the Native Binary
+* Upload strategies
+* Deployment verification
+* Troubleshooting common issues
 
-Step 5: Compare Monitoring Metrics
-•	Startup time comparison
-•	Memory consumption differences
-•	Response time improvements
-•	CPU utilization patterns
-•	Side-by-side comparison charts
+== 5: Compare Monitoring Metrics
+* Startup time comparison
+* Memory consumption differences
+* Response time improvements
+* CPU utilization patterns
+* Side-by-side comparison charts
 
-Step 6: Optimize Monitoring for Native Applications
-•	Custom metrics specifically for native deployments
-•	Performance tuning based on metrics
-•	Resource allocation recommendations
+== 6: Optimize Monitoring for Native Applications
+* Custom metrics specifically for native deployments
+* Performance tuning based on metrics
+* Resource allocation recommendations
 
-Conclusion:
-•	JAR vs. Native comparison summary
-•	Best practices for monitoring Quarkus native applications
-•	Real-world considerations for production deployments
-•	Series wrap-up
+== Conclusion
+* JAR vs. Native comparison summary
+* Best practices for monitoring Quarkus native applications
+* Real-world considerations for production deployments
+* Series wrap-up
+
+== Definitions:
+*	Azure AppService
+*	Azure Monitor
+
+== Resources
+* xxx

@@ -1,3 +1,107 @@
 = Deploy and Monitor a Native Binary to Azure Function
-{author-name}
+:author: {author-name}
+:icons: font
+:source-highlighter: highlight.js
+
+== Introduction
+* Recap of our journey through different Azure deployment options for Java apps
+* Introduction to Azure Functions as a serverless compute option
+* The unique advantages of combining GraalVM native binaries with Azure Functions
+* Challenges and considerations specific to Functions deployment
+* What readers will learn in this blog post
+
+== Understanding Azure Functions for Java
+* How Azure Functions differs from AppService and Container Apps
+* The serverless model and consumption-based pricing
+* Trigger types available for Java functions
+* Cold start considerations and why native binaries are particularly valuable
+* Brief overview of the Azure Functions programming model
+
+== Prerequisites
+* Azure account and Azure CLI installed
+* Azure Functions Core Tools
+* Development environment with GraalVM setup
+* Our Quarkus application from previous posts
+* Understanding of function triggers and bindings
+
+== Step 1: Adapting Your Application for Azure Functions
+* Modifying our Quarkus application to work with the Functions model
+* Converting REST endpoints to function triggers
+* Implementing HTTP triggers for our load testing capabilities
+* Setting up Quarkus Function extensions
+* Configuration updates in application.properties
+
+== Step 2: Native Compilation for Azure Functions
+* Configuring Quarkus for Azure Functions native compilation
+* Setting up the right GraalVM environment (addressing architecture issues)
+* Using GitHub Codespaces for consistent compilation environment
+* Function-specific considerations for native image generation
+* Building the native binary with proper dependencies
+
+== Step 3: Deploying the Native Binary to Azure Functions
+* Creating a Function App in Azure
+* Configuring the hosting plan (Consumption vs Premium)
+* Setting up application settings and environment variables
+* Deploying the native binary using Azure Functions Core Tools
+* Verifying deployment success
+
+== Step 4: Function-Specific Monitoring Setup
+* Understanding the Azure Functions monitoring architecture
+* Enabling Application Insights for your Function App
+* Key metrics specific to Functions (execution count, execution units)
+* Cold start monitoring for native functions
+* Configuring sampling and telemetry settings
+
+== Step 5: Analyzing Function Performance
+* Execution time analysis for native vs JVM functions
+* Memory consumption patterns in serverless environment
+* Cold start comparison between native and traditional deployments
+* Scaling behavior and concurrent execution metrics
+* Cost implications of native binaries in Functions
+
+== Step 6: Advanced Monitoring Techniques
+* Using custom metrics to track business-specific KPIs
+* Creating custom dimensions for deeper analysis
+* Live metrics stream for real-time monitoring
+* Dependency tracking for external services (Postgres, OpenAI)
+* End-to-end transaction monitoring
+
+== Step 7: Setting Up Alerts and Notifications
+* Functions-specific alert configurations
+* Thresholds for execution time and failure rates
+* Cost alerts for unexpected scaling events
+* Integration with notification systems
+* Proactive monitoring strategies
+
+== Performance Optimization
+* Fine-tuning memory allocation for native functions
+* Optimizing dependencies for smaller package size
+* Reducing cold start impact with pre-warming strategies
+* Configuring host.json for performance
+* Durable Functions considerations for long-running processes
+
+== Comparison with Previous Deployment Models
+* Side-by-side comparison: Functions vs AppService vs Container Apps
+* Scenarios where Functions excel for native binaries
+* Cost analysis across deployment models
+* Operational overhead comparison
+* Monitoring capability differences
+
+== Conclusion
+* Best practices for native Java in Azure Functions
+* When to choose Functions over other deployment options
+* Summary of monitoring approaches across our series
+* Future directions in serverless Java development
+* Series wrap-up and key takeaways
+
+== Definitions
+•	Azure AppService
+•	Azure Monitor
+
+== Resources
+* GitHub repository with complete code samples
+* Azure Functions documentation links
+* Monitoring reference guides
+* Troubleshooting common issues with native Functions
+* Community resources for Java on Azure Functions
 

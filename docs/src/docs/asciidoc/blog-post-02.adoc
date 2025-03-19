@@ -1,42 +1,51 @@
 = Enable Application Insights and Get Extra Monitoring
-{author-name}
+:author: {author-name}
+:icons: font
+:source-highlighter: highlight.js
 
 Introduction:
-•	Recap of the previous post
-•	Limitations of default monitoring
-•	Why Application Insights is valuable for Quarkus applications
+* Recap of the series so far
+* Limitations of default monitoring
+* Why Application Insights is valuable for Quarkus applications
 
-Step 1: Set Up Application Insights
-•	Create an Application Insights resource in Azure
-•	Get the instrumentation key/connection string
+== 1: Set Up Application Insights
+* Create an Application Insights resource in Azure
+* Get the instrumentation key/connection string
 
-Step 2: Add Application Insights to Your Quarkus Application
-•	Add dependencies to your pom.xml/build.gradle
-•	Configure the Application Insights agent
-•	Modify application.properties
+== 2: Add Application Insights to Your Quarkus Application
+* Add dependencies to your pom.xml/build.gradle
+* Configure the Application Insights agent
+* Modify application.properties
 
-Step 3: Deploy the Updated Application
-•	Redeploy to Azure AppService
-•	Verify Application Insights is sending data
+== 3: Deploy the Updated Application
+* Redeploy to Azure AppService
+* Verify Application Insights is sending data
 
-Step 4: Explore Enhanced Monitoring
-•	Application map
-•	Detailed request tracing
-•	Performance metrics
-•	Dependency tracking
-•	Exception monitoring
-•	Custom telemetry
+== 4: Explore Enhanced Monitoring
+* Application map
+* Detailed request tracing
+* Performance metrics
+* Dependency tracking
+* Exception monitoring
+* Custom telemetry
 
-Step 5: Set Up Advanced Alerts
-•	Creating smart detection rules
-•	Performance anomaly detection
-•	Custom metric alerts
+== 5: Set Up Advanced Alerts
+* Creating smart detection rules
+* Performance anomaly detection
+* Custom metric alerts
 
-Step 6: Create Custom Dashboards
-•	Key metrics for a Quarkus application
-•	Organizing metrics for different stakeholders
+== 6: Create Custom Dashboards
+* Key metrics for a Quarkus application
+* Organizing metrics for different stakeholders
 
-Conclusion:
-•	Comparison with default monitoring
-•	Benefits gained from Application Insights
-•	Preview of next post on native compilation
+== Conclusion
+* Comparison with default monitoring
+* Benefits gained from Application Insights
+* Preview of next post on native compilation
+
+== Definitions:
+*	Azure AppService
+*	Azure Monitor
+
+== Resources
+* https://learn.microsoft.com/en-us/azure/azure-monitor/app/live-stream?tabs=otel

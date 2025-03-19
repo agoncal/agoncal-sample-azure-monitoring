@@ -1,3 +1,96 @@
 = Deploy and Monitor a Native Binary to Azure Container Apps
-{author-name}
+:author: {author-name}
+:icons: font
+:source-highlighter: highlight.js
 
+== Introduction
+* Recap of the series journey so far (AppService deployments with JAR and native binaries)
+* Introduction to Azure Container Apps as an alternative deployment target
+* Why Container Apps might be a better fit for native binaries (better diagnostics, containerized by design)
+* The challenges we previously faced with native binaries on AppService (architecture mismatches, GLIBC issues)
+* What readers will gain from this post
+
+== Understanding Azure Container Apps
+* What is Azure Container Apps and how it differs from AppService
+* Key benefits: built-in Kubernetes-like orchestration without K8s complexity
+* Scaling capabilities (including scale to zero)
+* Traffic splitting and revision management
+* Better native support for containerized workloads
+* Built-in Dapr integration possibilities
+
+== Prerequisites
+* Azure account and Azure CLI installed
+* Docker installed locally
+* Development environment configured for native compilation
+* GitHub Codespaces setup (to avoid architecture mismatch issues)
+* Our Quarkus application from previous posts
+
+== Step 1: Preparing Your Native Binary for Container Apps
+* Review of the architecture considerations (AMD64 vs ARM64)
+* Using the right base image for your Dockerfile
+* Best practices for containerizing native binaries
+* Setting up proper health checks for Container Apps
+* Port configuration and environment variables
+
+== Step 2: Building the Native Container Image
+* Creating an optimized Dockerfile for native binaries
+* Compiling in the right environment (GitHub Codespaces)
+* Multi-stage builds for smaller images
+* Using distroless containers for security and size benefits
+* Pushing to Azure Container Registry
+
+== Step 3: Setting Up Azure Container Apps Environment
+* Creating a Container Apps environment
+* Configuring networking and ingress
+* Setting up secrets and configuration
+* Resource allocation considerations for native binaries
+
+== Step 4: Deploying the Native Container
+* Deployment via Azure CLI
+* Setting revision and scaling rules
+* Configuring environment variables
+* Verifying deployment success
+* Troubleshooting strategies (with better log access than AppService)
+
+== Step 5: Monitoring Setup for Container Apps
+* Container Apps built-in monitoring capabilities
+* Setting up Application Insights for deeper telemetry
+* Configuring Log Analytics for the Container Apps environment
+* Prometheus metrics integration options
+* Exploring Container Apps logs and diagnostics features
+
+== Step 6: Advanced Monitoring Scenarios
+* Monitoring revisions during blue/green deployments
+* Tracking scale events and cold starts
+* Performance comparisons with AppService deployments
+* Custom dashboards focused on container metrics
+* Memory and CPU efficiency tracking across container revisions
+
+== Step 7: Alerts and Notifications
+* Setting up appropriate alerting thresholds for native containers
+* Resource utilization alerts specific to Container Apps
+* Availability and performance alerting
+* Integration with notification systems
+
+== Performance Analysis
+* Startup time comparison: AppService vs Container Apps for native binaries
+* Memory footprint analysis
+* Request throughput and latency metrics
+* Cold start behavior in Container Apps environment
+* Cost implications of the Container Apps deployment model
+
+== Conclusion
+* When to choose Container Apps over AppService for native binaries
+* Summary of monitoring capabilities unique to Container Apps
+* Best practices learned throughout the deployment journey
+* Final thoughts on the native Java experience in Azure
+
+== Definitions
+•	Azure AppService
+•	Azure Monitor
+
+== Resources
+* GitHub repository link with complete code and Dockerfiles
+* Azure Container Apps documentation
+* Monitoring reference documentation
+* Troubleshooting guide for common issues
